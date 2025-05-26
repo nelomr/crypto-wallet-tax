@@ -5,12 +5,12 @@ import useHedera from './composables/useHedera';
 import { transformBit2MeTransactions, transformHederaTransactions } from './services/transformationService'; // Assuming you have this service
 import DynamicTable from './components/DynamicTable.vue';
 
-const { bit2meData, fetchBit2meData } = useBit2me();
-const { hederaData, fetchHederaData } = useHedera();
+const { transactions, fetchTransactions: fetchBit2meData } = useBit2me();
+const { hederaTransactions, fetchTransactions: fetchHederaData } = useHedera();
 
 const tableData = computed(() => {
-  const transformedBit2me = bit2meData.value ? transformBit2MeTransactions(bit2meData.value) : [];
-  const transformedHedera = hederaData.value ? transformHederaTransactions(hederaData.value) : [];
+  const transformedBit2me = transactions.value ? transformBit2MeTransactions(transactions.value) : [];
+  const transformedHedera = hederaTransactions.value ? transformHederaTransactions(hederaTransactions.value) : [];
   return [...transformedBit2me, ...transformedHedera];
 });
 
