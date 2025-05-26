@@ -42,17 +42,17 @@ import useBit2me from '../composables/useBit2Me';
 import useHedera from '../composables/useHedera';
 import { transformBit2MeTransactions, transformHederaTransactions } from '../services/transformationService'; // Assuming you have a transformation service
 
-const { bit2meData, fetchBit2meData } = useBit2me();
-const { hederaData, fetchHederaData } = useHedera();
+const { transactions, fetchTransactions: fetchBit2meTransactions } = useBit2me();
+const { hederaTransactions, fetchTransactions: fetchHederaTransactions } = useHedera();
 
 const allData = ref([]);
 const currentPage = ref(1);
 const itemsPerPage = 10; // You can make this a prop or configurable
 
 const transformedData = computed(() => {
-  const transformedBit2me = bit2meData.value ? transformBit2MeTransactions(bit2meData.value) : [];
-  const transformedHedera = hederaData.value ? transformHederaTransactions(hederaData.value) : [];
-  return [...transformedBit2me, ...transformedHedera];
+  const transformedBit2me = transactions.value ? transformBit2MeTransactions(transactions.value) : [];
+  const transformedHedera = hederaTransactions.value ? transformHederaTransactions(hederaTransactions.value) : [];
+  return [...transformBit2MeTransactions(transactions.value), ...transformedHedera];
 });
 
 const paginatedData = computed(() => {
@@ -78,8 +78,8 @@ const nextPage = () => {
 };
 
 onMounted(async () => {
-  await fetchBit2meData();
-  await fetchHederaData();
+  await fetchBit2meTransactions();
+  await fetchHederaTransactions();
 });
 </script>
 
