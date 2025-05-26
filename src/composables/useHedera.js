@@ -5,7 +5,7 @@ import { transformHederaTransactions } from '@/services/transformationService';
 // Default account ID from environment variable, can be overridden by function argument
 const defaultHederaAccountId = import.meta.env.VITE_HEDERA_ACCOUNT_ID;
 
-export function useHedera() {
+export default function() {
   const hederaTransactions = ref([]);
   const isLoadingHederaTransactions = ref(false);
   const errorHederaTransactions = ref(null);

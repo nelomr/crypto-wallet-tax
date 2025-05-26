@@ -40,7 +40,7 @@
 import { ref, computed, onMounted } from 'vue';
 import useBit2me from '../composables/useBit2me';
 import useHedera from '../composables/useHedera';
-import { transformBit2meTransactions, transformHederaData } from '../services/transformationService'; // Assuming you have a transformation service
+import { transformBit2MeTransactions, transformHederaTransactions } from '../services/transformationService'; // Assuming you have a transformation service
 
 const { bit2meData, fetchBit2meData } = useBit2me();
 const { hederaData, fetchHederaData } = useHedera();
@@ -50,8 +50,8 @@ const currentPage = ref(1);
 const itemsPerPage = 10; // You can make this a prop or configurable
 
 const transformedData = computed(() => {
-  const transformedBit2me = bit2meData.value ? transformBit2meTransactions(bit2meData.value) : [];
-  const transformedHedera = hederaData.value ? transformHederaData(hederaData.value) : [];
+  const transformedBit2me = bit2meData.value ? transformBit2MeTransactions(bit2meData.value) : [];
+  const transformedHedera = hederaData.value ? transformHederaTransactions(hederaData.value) : [];
   return [...transformedBit2me, ...transformedHedera];
 });
 

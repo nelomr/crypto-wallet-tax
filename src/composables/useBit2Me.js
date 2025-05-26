@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { getBit2MeWallets, getBit2MeTransactions } from '@/services/bit2meApi'; // Assuming @ is aliased to src
 import { transformBit2MeTransactions } from '@/services/transformationService';
 
-export function useBit2Me() {
+export default function() {
   const wallets = ref([]);
   const transactions = ref([]);
   const isLoadingWallets = ref(false);
