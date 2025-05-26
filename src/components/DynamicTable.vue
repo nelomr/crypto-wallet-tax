@@ -38,7 +38,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import useBit2me from '../composables/useBit2me';
+import useBit2me from '../composables/useBit2Me';
 import useHedera from '../composables/useHedera';
 import { transformBit2MeTransactions, transformHederaTransactions } from '../services/transformationService'; // Assuming you have a transformation service
 
