@@ -41,7 +41,7 @@ export function transformHederaTransactions(transactions) {
         console.warn('Missing consensus_timestamp in Hedera transaction:', tx);
     }
 
-    const type = tx.type || 'UNKNOWN'; // Default type if missing
+    let type = tx.type || 'UNKNOWN'; // Default type if missing
     const fee = (parseFloat(tx.charged_tx_fee) / 100000000) || 0; // Convert from tinybars to HBAR
 
     let amount = 0;
